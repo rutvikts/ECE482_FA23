@@ -1,0 +1,13 @@
+* Transmission Line Setup
+
+tl drv 0 load 0 Z0=100 TD=350e-12 IC=0
+cpkg drv 0 300-15
+cl load 0 2e-12
+
+* Simple driver as in Fig. 2 of project description. Replace below with output driver.
+rdrv drv src 1000
+vdrv src 0 pulse(0 1.8 625p 1p 1p 623p 10n)
+
+.tran 1p 10n
+.option post
+.end
