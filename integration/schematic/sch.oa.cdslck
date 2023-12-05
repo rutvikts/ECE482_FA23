@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      eliasco2
+HostName                       fastx3-38.ews.illinois.edu
+ProcessIdentifier              1485970
+ProcessCreationTime_UTC        1701745124
+ProcessCreationTime_Readable   Mon Dec  4 20:58:44 2023 CST
+AppIdentifier                  OA File System Design Manager
+OSType                         unix
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         /home/eliasco2/ece482.work/integration/integration/schematic/sch.oa.cdslck
+TimeEditLocked                 Mon Dec  4 21:35:23 2023 CST
