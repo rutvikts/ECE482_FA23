@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      salkha21
+HostName                       dcl-l416-18.ews.illinois.edu
+ProcessIdentifier              81576
+ProcessCreationTime_UTC        1701377079
+ProcessCreationTime_Readable   Thu Nov 30 14:44:39 2023 CST
+AppIdentifier                  OA File System Design Manager
+OSType                         unix
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         /home/salkha21/ece482.work/gpdk045/MUX/DEMUX/layout/layout.oa.cdslck
+TimeEditLocked                 Thu Nov 30 14:52:42 2023 CST
