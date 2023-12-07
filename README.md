@@ -55,6 +55,100 @@ The PBRS_NOR folder includes schematic, symbol, and layout folders. This folder 
 ## PBRS_Inverter
 The PBRS_Inverter folder includes schematic, symbol, and layout folders. This folder includes all the necessary components to implement inverter gates used in the PBRS. 
 
+## CLK_BUFFER_GIVEN:
+This is the provided CLK buffer file, it buffers the clock signal from the input to the rest of the circuit.
+
+
+## DESEAR_COM:
+This is the toplevel deserializer it performs the full functionality. It converts a serial data line into 16 seperate data lines
+Inputs: FCLK which is the 1600 MHz clock; SCLK which is the 100 MHz clock; DATAIN which is the serial data stream;
+Outputs: FCLKBAR which is the 1600 MHz clock but inverted; P1-P16 which is the 16 data stream outputs
+IO: VDD which is power; VSS which is ground
+
+## DESER_Bottom:
+This is the bottom half of the desearilizer, which contains 16 registers and creates 16 temporary data stream outputs cycling based on the 1600 MHz frequency
+Inputs: DATAIN which is the serialized datastream; CLK which is the 1600 MHz clock; CLKBAR which is the 1600MHz clock but inverted
+Outputs: O1-O16 which are the temporary data stream outputs
+IO: VDD which is power; VSS which is ground
+
+## DESER_Top:
+This is the top half of the desearilizer, which contains the 16 registers which ensures that the outputs are cycled based on the 100 MHz frequency
+Inputs: CLK which is the 100 MHz clock; CLKBAR which is the 100 MHz clock but inverted; O1-O16 which is the 16 temporary data stream outputs from DESER_Bottom
+Outputs: P1-P16 which are the 16 data stream outputs on the 100 MHz cycle
+IO: VDD which is power; VSS which is ground
+
+## DESER_Register:
+This is the register used in the desearilizer design, it is comprised of 2 transmission gates and 2 inverters. It samples data on the posedge of CLK.
+Inputs: D which is the data; CLK which is the clock; CLKBAR which is the clock but inverted
+Outputs: Q which is the sampled data
+IO: VDD which is power; VSS which is ground
+
+## DESER_CLKDIV2:
+This is a frequency divider by 2, it uses DESER_Register.
+Inputs: CLK which is the input clock at frequency f; CLKBAR which is the inverted input clock at frequency f
+Outputs: CLKOUT which is the output clock at frequency f/2; CLKBAROUT which is the inverted output clock at frequency f/2
+IO: VDD which is power; VSS which is ground
+
+## DESER_CLKDIV4:
+This is a frequency divider by 4, it uses DESER_CLKDIV2.
+Inputs: CLK which is the input clock at frequency f; CLKBAR which is the inverted input clock at frequency f
+Outputs: CLKOUT which is the output clock at frequency f/4; CLKBAROUT which is the inverted output clock at frequency f/4
+IO: VDD which is power; VSS which is ground
+
+## DESER_CLKDIV8:
+This is a frequency divider by 8, it uses DESER_CLKDIV2.
+Inputs: CLK which is the input clock at frequency f; CLKBAR which is the inverted input clock at frequency f
+Outputs: CLKOUT which is the output clock at frequency f/8; CLKBAROUT which is the inverted output clock at frequency f/8
+IO: VDD which is power; VSS which is ground
+
+## DESER_CLKDIV16:
+This is a frequency divider by 16, it uses DESER_CLKDIV2.
+Inputs: CLK which is the input clock at frequency f; CLKBAR which is the inverted input clock at frequency f
+Outputs: CLKOUT which is the output clock at frequency f/16; CLKBAROUT which is the inverted output clock at frequency f/16
+IO: VDD which is power; VSS which is ground
+
+## DESER_Inverter_1:
+This is a size 1 inverted used in the Register.
+Inputs: IN which is the input signal
+Outputs: OUT which is the inverted IN
+IO: VDD which is power; VSS which is ground
+
+## DESER_Inverter_32:
+This is a size 32 inverted used in DESEAR_COM.
+Inputs: IN which is the signal to be ineverted
+Outputs: OUT which is the inverted signal
+IO: VDD which is power; VSS which is ground
+
+## DESER_TransmissionGate_1:
+This is the first transmission gate used in DESER_Register, this enables the signal to passthrough when CLK is low.
+Inputs: IN which is the signal to be transmitted
+Outputs: OUT which is the transmitted signal
+IO: VDD which is power; VSS which is ground
+
+## DESER_TransmissionGate_2:
+This is the first transmission gate used in DESER_Register, this enables the signal to passthrough when CLK is high.
+Inputs: IN which is the signal to be transmitted
+Outputs: OUT which is the transmitted signal
+IO: VDD which is power; VSS which is ground
+
+## PRBS:
+This is the toplevel PRBS which performs full functionality. During a posedge of the EN it sets all output registers to signal high.
+Inputs: EN which controls the PRBS dictating when it should start; CLK which is the 100 MHz signal
+Outputs: Q0-Q15 which is the output signals of the PRBS
+IO: VDD which is power; VSS which is ground
+
+## LVLSHIFTER_DOWN:
+This is the toplevel for the level-shifter down. It transforms a voltage from 1.8V to 1.1V
+IO: VDD is the 1.1V power; VDDIO is the 1.8V power; VSS is ground; IN is the 1.8V signal; OUT is the 1.1V signal; OUTBAR is the logical negative of OUT
+
+## LVLSHIFTER_UP:
+This is the toplevel for the level-shifter up. It transforms a voltage from 1.1V to 1.8V
+IO: VDD is the 1.1V power; VDDIO is the 1.8V power; VSS is ground; IN is the 1.1V signal; OUT is the 1.8V signal; OUTBAR is the logical negative of OUT
+
+
+
+
+
 
 
 
